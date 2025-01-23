@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>joseph.mod.loader</id>
+    <version>1.0.0</version>
+    <title>Joseph's Mod Loader</title>
+    <authors>Joseph_fallen</authors>
+    <icon>profile.png</icon>
+    <description>Package Description</description>
+    <copyright>Copyright © 2025 Joseph_fallen</copyright>
+    <repository type="git" />
+    <dependencies>
+      <group targetFramework="net8.0-windows7.0" />
+    </dependencies>
+    <frameworkReferences>
+      <group targetFramework="net8.0-windows7.0">
+        <frameworkReference name="Microsoft.WindowsDesktop.App.WindowsForms" />
+      </group>
+    </frameworkReferences>
+    <contentFiles>
+      <files include="any/net8.0-windows7.0/Screenshot 2025-01-22 223033.ico" buildAction="Content" />
+    </contentFiles>
+  </metadata>
+  <files>
+    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Debug\net8.0-windows\Joseph's Mod Loader.runtimeconfig.json" target="lib\net8.0-windows7.0\Joseph's Mod Loader.runtimeconfig.json" />
+    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Debug\net8.0-windows\Joseph's Mod Loader.dll" target="lib\net8.0-windows7.0\Joseph's Mod Loader.dll" />
+    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\Screenshot 2025-01-22 223033.ico" target="content\Screenshot 2025-01-22 223033.ico" />
+    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\Screenshot 2025-01-22 223033.ico" target="contentFiles\any\net8.0-windows7.0\Screenshot 2025-01-22 223033.ico" />
+    <file src="C:\Users\xxxac\Downloads\Joseph's Mod Loader-logo\profile.png" target="\profile.png" />
+  </files>
+</package>

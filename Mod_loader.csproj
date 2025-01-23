@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Screenshot 2025-01-22 223033.ico</ApplicationIcon>
+    <AssemblyName>Joseph's Mod Loader</AssemblyName>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Joseph's Mod Loader</Title>
+    <Authors>Joseph_fallen</Authors>
+    <Company>Joseph_fallen</Company>
+    <Copyright>Copyright © 2025 Joseph_fallen</Copyright>
+    <PackageIcon>profile.png</PackageIcon>
+    <PackageId>joseph.mod.loader</PackageId>
+    <Platforms>AnyCPU;x64</Platforms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="Screenshot 2025-01-22 223033.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\Joseph's Mod Loader-logo\profile.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\NN_Mod_loader\bin\x64\Release\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

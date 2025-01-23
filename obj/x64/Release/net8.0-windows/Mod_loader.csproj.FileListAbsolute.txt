@@ -1,0 +1,21 @@
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.exe
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.deps.json
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.runtimeconfig.json
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.dll
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.pdb
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Newtonsoft.Json.dll
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Newtonsoft.Json.pdb
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Newtonsoft.Json.xml
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.csproj.AssemblyReference.cache
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.AssemblyInfoInputs.cache
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.AssemblyInfo.cs
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.csproj.CoreCompileInputs.cache
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.csproj.Up2Date
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Joseph's Mod Loader.dll
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\refint\Joseph's Mod Loader.dll
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Joseph's Mod Loader.pdb
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.genruntimeconfig.cache
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\ref\Joseph's Mod Loader.dll
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\NN_ModLoaderGUI.MainForm.resources
+C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\obj\x64\Release\net8.0-windows\Mod_loader.csproj.GenerateResource.cache
