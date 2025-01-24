@@ -11,18 +11,21 @@
         private System.Windows.Forms.ListView modsListView;
         private System.Windows.Forms.Button enableModButton;
         private System.Windows.Forms.Button uploadModButton;
+        private System.Windows.Forms.Button deleteModButton; // Add delete button
         private System.Windows.Forms.Button saveSettingsButton;
         private System.Windows.Forms.TextBox pakFolderTextBox;
         private System.Windows.Forms.Label pakFolderLabel;
         private System.Windows.Forms.Label titleLabel;
-        private Label descriptionLabel;
-        private Label versionLabel;
-        private Label creditsLabel;
-        private Label creditsTextLabel;
+        private System.Windows.Forms.Label creditsLabel;
+        private System.Windows.Forms.Label creditsTextLabel;
         private System.Windows.Forms.Label contributorsLabel;
         private System.Windows.Forms.Label librariesLabel;
 
-        // Dispose method (no changes here)
+        // Add version and description labels
+        private System.Windows.Forms.Label versionLabel;
+        private System.Windows.Forms.Label descriptionLabel;
+
+        // Dispose method
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -40,6 +43,7 @@
             modsListView = new ListView();
             enableModButton = new Button();
             uploadModButton = new Button();
+            deleteModButton = new Button(); // Initialize delete button
             settingsTabPage = new TabPage();
             pakFolderTextBox = new TextBox();
             saveSettingsButton = new Button();
@@ -48,12 +52,51 @@
             creditsTabPage = new TabPage();
             creditsLabel = new Label();
             creditsTextLabel = new Label();
+            contributorsLabel = new Label();
+            librariesLabel = new Label();
+
+            // Initialize versionLabel and descriptionLabel
+            versionLabel = new Label();
+            descriptionLabel = new Label();
 
             tabControl.SuspendLayout();
             modsTabPage.SuspendLayout();
             settingsTabPage.SuspendLayout();
             creditsTabPage.SuspendLayout();
             SuspendLayout();
+
+            // 
+            // deleteModButton
+            // 
+            deleteModButton.Location = new Point(430, 150); // Position below the other buttons
+            deleteModButton.Name = "deleteModButton";
+            deleteModButton.Size = new Size(150, 35);
+            deleteModButton.TabIndex = 6;
+            deleteModButton.Text = "Delete Mod";
+            deleteModButton.UseVisualStyleBackColor = true;
+            deleteModButton.Click += deleteModButton_Click;
+
+            // 
+            // versionLabel
+            // 
+            versionLabel.AutoSize = true;
+            versionLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            versionLabel.Location = new Point(10, 460);
+            versionLabel.Name = "versionLabel";
+            versionLabel.Size = new Size(150, 19);
+            versionLabel.TabIndex = 6;
+            versionLabel.Text = "Version: Not Available";
+
+            // 
+            // descriptionLabel
+            // 
+            descriptionLabel.AutoSize = true;
+            descriptionLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
+            descriptionLabel.Location = new Point(10, 485);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new Size(200, 19);
+            descriptionLabel.TabIndex = 7;
+            descriptionLabel.Text = "Description: Not Available";
 
             // 
             // tabControl
@@ -75,6 +118,9 @@
             modsTabPage.Controls.Add(modsListView);
             modsTabPage.Controls.Add(enableModButton);
             modsTabPage.Controls.Add(uploadModButton);
+            modsTabPage.Controls.Add(deleteModButton); // Add delete button to modsTabPage
+            modsTabPage.Controls.Add(versionLabel); // Add to modsTabPage
+            modsTabPage.Controls.Add(descriptionLabel); // Add to modsTabPage
             modsTabPage.Location = new Point(4, 29);
             modsTabPage.Name = "modsTabPage";
             modsTabPage.Padding = new Padding(10);
@@ -82,7 +128,6 @@
             modsTabPage.TabIndex = 0;
             modsTabPage.Text = "Mods";
             modsTabPage.UseVisualStyleBackColor = true;
-
             // 
             // statusLabel
             // 
@@ -130,6 +175,17 @@
             uploadModButton.Click += uploadModButton_Click;
 
             // 
+            // deleteModButton
+            // 
+            deleteModButton.Location = new Point(430, 150);
+            deleteModButton.Name = "deleteModButton";
+            deleteModButton.Size = new Size(150, 35);
+            deleteModButton.TabIndex = 6;
+            deleteModButton.Text = "Delete Mod";
+            deleteModButton.UseVisualStyleBackColor = true;
+            deleteModButton.Click += deleteModButton_Click; // Handle button click
+
+            // 
             // settingsTabPage
             // 
             settingsTabPage.Controls.Add(pakFolderTextBox);
@@ -173,13 +229,14 @@
             pakFolderLabel.Size = new Size(160, 19);
             pakFolderLabel.TabIndex = 0;
             pakFolderLabel.Text = "Pak Folder Path Settings:";
+
             // 
             // creditsTabPage
             // 
             creditsTabPage.Controls.Add(creditsLabel);
-            creditsTabPage.Controls.Add(contributorsLabel); // Added contributor label
-            creditsTabPage.Controls.Add(librariesLabel);   // Added libraries label
             creditsTabPage.Controls.Add(creditsTextLabel);
+            creditsTabPage.Controls.Add(contributorsLabel);
+            creditsTabPage.Controls.Add(librariesLabel);
             creditsTabPage.Location = new Point(4, 29);
             creditsTabPage.Name = "creditsTabPage";
             creditsTabPage.Padding = new Padding(10);
@@ -200,29 +257,35 @@
             creditsLabel.Text = "Credits:";
 
             // 
+            // contributorsLabel
+            // 
+            contributorsLabel.AutoSize = true;
+            contributorsLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            contributorsLabel.Location = new Point(10, 50);
+            contributorsLabel.Name = "contributorsLabel";
+            contributorsLabel.Size = new Size(150, 21);
+            contributorsLabel.TabIndex = 1;
+            contributorsLabel.Text = "Lead Developer: Joseph";
+
+            // 
             // librariesLabel
             // 
-            librariesLabel = new Label();
             librariesLabel.AutoSize = true;
             librariesLabel.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            librariesLabel.Location = new Point(10, 150);
+            librariesLabel.Location = new Point(10, 100);
             librariesLabel.Name = "librariesLabel";
-            librariesLabel.Size = new Size(120, 21);
+            librariesLabel.Size = new Size(150, 21);
             librariesLabel.TabIndex = 2;
-            librariesLabel.Text = "Libraries Used:";
+            librariesLabel.Text = "Libraries: Newtonsoft.Json";
 
             // 
             // creditsTextLabel
             // 
             creditsTextLabel.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point);
-            creditsTextLabel.Location = new Point(10, 80);
+            creditsTextLabel.Location = new Point(10, 150);
             creditsTextLabel.Name = "creditsTextLabel";
             creditsTextLabel.Size = new Size(1100, 300);
             creditsTextLabel.TabIndex = 3;
-            creditsTextLabel.Text = "Special thanks to:\n\n" +
-                                "- Joseph_fallen (Creator)\n" +
-                                "Libraries used:\n\n" +
-                                "- Newtonsoft.Json (for JSON handling)\n";
 
 
             // 
