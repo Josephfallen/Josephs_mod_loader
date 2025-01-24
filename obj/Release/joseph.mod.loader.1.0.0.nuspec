@@ -22,8 +22,8 @@
     </contentFiles>
   </metadata>
   <files>
-    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\Release\net8.0-windows\win-x64\Joseph's Mod Loader.runtimeconfig.json" target="lib\net8.0-windows7.0\Joseph's Mod Loader.runtimeconfig.json" />
-    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\Release\net8.0-windows\win-x64\Joseph's Mod Loader.dll" target="lib\net8.0-windows7.0\Joseph's Mod Loader.dll" />
+    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.runtimeconfig.json" target="lib\net8.0-windows7.0\Joseph's Mod Loader.runtimeconfig.json" />
+    <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\bin\x64\Release\net8.0-windows\Joseph's Mod Loader.dll" target="lib\net8.0-windows7.0\Joseph's Mod Loader.dll" />
     <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\Screenshot 2025-01-22 223033.ico" target="content\Screenshot 2025-01-22 223033.ico" />
     <file src="C:\Users\xxxac\source\repos\Mod_loader\Mod_loader\Screenshot 2025-01-22 223033.ico" target="contentFiles\any\net8.0-windows7.0\Screenshot 2025-01-22 223033.ico" />
     <file src="C:\Users\xxxac\Downloads\Joseph's Mod Loader-logo\profile.png" target="\profile.png" />
