@@ -100,13 +100,13 @@ namespace NN_ModLoaderGUI
 
         private void enableModButton_Click(object sender, EventArgs e)
         {
-            if (modsListBox.SelectedIndex == -1)
+            if (modsListView.SelectedItems.Count == 0)
             {
                 statusLabel.Text = "Please select a mod to enable or disable.";
                 return;
             }
 
-            string selectedMod = modsListBox.SelectedItem.ToString();
+            string selectedMod = modsListView.SelectedItems[0].Text;
             bool isDisabled = selectedMod.EndsWith("[DISABLED]");
             string modFileName = isDisabled ? selectedMod.Replace(" [DISABLED]", "") : selectedMod;
 
@@ -115,27 +115,26 @@ namespace NN_ModLoaderGUI
 
             try
             {
-                // If the mod is disabled, it will have the ".pak.d" extension in the Disabled_mods folder
-                string modPath = isDisabled ? Path.Combine(sourceFolder, modFileName + ".d") : Path.Combine(sourceFolder, modFileName);
-                string modTargetPath = isDisabled ? Path.Combine(destinationFolder, modFileName) : Path.Combine(destinationFolder, modFileName + ".d");
+                string modPath = isDisabled
+                    ? Path.Combine(sourceFolder, modFileName + ".d")
+                    : Path.Combine(sourceFolder, modFileName);
+                string modTargetPath = isDisabled
+                    ? Path.Combine(destinationFolder, modFileName)
+                    : Path.Combine(destinationFolder, modFileName + ".d");
 
-                // Check if the mod file exists in the source folder
                 if (!File.Exists(modPath))
                 {
                     statusLabel.Text = $"Mod file not found: {modPath}";
                     return;
                 }
 
-                // Create the destination folder if it doesn't exist
                 if (!Directory.Exists(destinationFolder))
                 {
                     Directory.CreateDirectory(destinationFolder);
                 }
 
-                // Move the mod file
                 File.Move(modPath, modTargetPath);
 
-                // Handle associated files if mod info exists
                 string modInfoPath = Path.Combine(sourceFolder, Path.GetFileNameWithoutExtension(modFileName) + "-info.json");
                 if (File.Exists(modInfoPath))
                 {
@@ -154,11 +153,10 @@ namespace NN_ModLoaderGUI
 
                             if (File.Exists(associatedFilePath))
                             {
-                                // Append .pak.d when moving associated files to "Disabled_mods"
                                 string disabledFileWithD = isDisabled ? disabledFilePath : disabledFilePath + ".d";
                                 if (!isDisabled && disabledFileWithD.EndsWith(".d"))
                                 {
-                                    disabledFileWithD = disabledFileWithD.Substring(0, disabledFileWithD.Length - 7); // Remove ".pak.d" when enabling
+                                    disabledFileWithD = disabledFileWithD.Substring(0, disabledFileWithD.Length - 2);
                                 }
                                 File.Move(associatedFilePath, disabledFileWithD);
                             }
@@ -166,8 +164,7 @@ namespace NN_ModLoaderGUI
                     }
                 }
 
-                // Remove the selected mod from the list and reload
-                modsListBox.Items.Remove(selectedMod);
+                modsListView.Items.Remove(modsListView.SelectedItems[0]);
                 LoadMods();
 
                 statusLabel.Text = $"{(isDisabled ? "Enabled" : "Disabled")} mod: {modFileName}";
@@ -180,26 +177,37 @@ namespace NN_ModLoaderGUI
 
         private void LoadMods()
         {
-            // Clear the existing items in the list box
-            modsListBox.Items.Clear();
+            modsListView.Items.Clear();
 
-            // Load enabled mods from the paks folder
             string[] modFiles = Directory.GetFiles(paksFolder, "*.pak", SearchOption.TopDirectoryOnly);
             foreach (string modFile in modFiles)
             {
                 string modFileName = Path.GetFileName(modFile);
-                // Check if the mod is already disabled by checking if it has the .pak.d extension
+                string modInfoPath = Path.Combine(paksFolder, Path.GetFileNameWithoutExtension(modFileName) + "-info.json");
+
                 if (File.Exists(Path.Combine(paksFolder, modFileName + ".d")))
                 {
-                    modsListBox.Items.Add(modFileName + " [DISABLED]");
+                    modsListView.Items.Add(new ListViewItem(modFileName + " [DISABLED]"));
                 }
                 else
                 {
-                    modsListBox.Items.Add(modFileName);
+                    modsListView.Items.Add(new ListViewItem(modFileName));
+                }
+
+                if (File.Exists(modInfoPath))
+                {
+                    string jsonContent = File.ReadAllText(modInfoPath);
+                    ModInfo modInfo = JsonConvert.DeserializeObject<ModInfo>(jsonContent);
+
+                    if (modInfo != null)
+                    {
+                        // Display mod info in UI
+                        descriptionLabel.Text = $"Description: {modInfo.Description}";
+                        versionLabel.Text = $"Version: {modInfo.Version}";
+                    }
                 }
             }
 
-            // Load disabled mods from the Disabled_mods folder
             string disabledModsFolder = Path.Combine(paksFolder, "Disabled_mods");
             if (Directory.Exists(disabledModsFolder))
             {
@@ -207,10 +215,26 @@ namespace NN_ModLoaderGUI
                 foreach (string disabledModFile in disabledModFiles)
                 {
                     string disabledModFileName = Path.GetFileName(disabledModFile);
-                    modsListBox.Items.Add(disabledModFileName.Replace(".d", "") + " [DISABLED]");
+                    string modInfoPath = Path.Combine(disabledModsFolder, Path.GetFileNameWithoutExtension(disabledModFileName.Replace(".d", "")) + "-info.json");
+
+                    modsListView.Items.Add(new ListViewItem(disabledModFileName.Replace(".d", "") + " [DISABLED]"));
+
+                    if (File.Exists(modInfoPath))
+                    {
+                        string jsonContent = File.ReadAllText(modInfoPath);
+                        ModInfo modInfo = JsonConvert.DeserializeObject<ModInfo>(jsonContent);
+
+                        if (modInfo != null)
+                        {
+                            // Display mod info in UI
+                            descriptionLabel.Text = $"Description: {modInfo.Description}";
+                            versionLabel.Text = $"Version: {modInfo.Version}";
+                        }
+                    }
                 }
             }
         }
+
 
         public class ModInfo
         {
