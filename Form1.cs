@@ -175,6 +175,63 @@ namespace NN_ModLoaderGUI
             }
         }
 
+        private void deleteModButton_Click(object sender, EventArgs e)
+        {
+            if (modsListView.SelectedItems.Count == 0)
+            {
+                statusLabel.Text = "Please select a mod to delete.";
+                return;
+            }
+
+            string selectedMod = modsListView.SelectedItems[0].Text;
+            bool isDisabled = selectedMod.EndsWith("[DISABLED]");
+            string modFileName = isDisabled ? selectedMod.Replace(" [DISABLED]", "") : selectedMod;
+
+            string sourceFolder = isDisabled ? Path.Combine(paksFolder, "Disabled_mods") : paksFolder;
+
+            try
+            {
+                string modPath = Path.Combine(sourceFolder, modFileName);
+                string modInfoPath = Path.Combine(sourceFolder, Path.GetFileNameWithoutExtension(modFileName) + "-info.json");
+
+                if (File.Exists(modPath))
+                {
+                    File.Delete(modPath);
+                }
+
+                if (File.Exists(modInfoPath))
+                {
+                    string jsonContent = File.ReadAllText(modInfoPath);
+                    ModInfo modInfo = JsonConvert.DeserializeObject<ModInfo>(jsonContent);
+
+                    if (modInfo?.AssociatedFiles != null)
+                    {
+                        foreach (var associatedFile in modInfo.AssociatedFiles)
+                        {
+                            string associatedFilePath = Path.Combine(sourceFolder, associatedFile);
+                            if (File.Exists(associatedFilePath))
+                            {
+                                File.Delete(associatedFilePath);
+                            }
+                        }
+                    }
+
+                    File.Delete(modInfoPath);
+                }
+
+                modsListView.Items.Remove(modsListView.SelectedItems[0]);
+                LoadMods();
+
+                statusLabel.Text = $"Mod deleted: {modFileName}";
+            }
+            catch (Exception ex)
+            {
+                statusLabel.Text = $"Error deleting mod: {ex.Message}";
+            }
+        }
+
+
+
         private void LoadMods()
         {
             modsListView.Items.Clear();
