@@ -4,8 +4,6 @@ using System.IO.Compression;
 using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.Diagnostics;
-
 
 namespace NN_ModLoaderGUI
 {
@@ -99,12 +97,12 @@ namespace NN_ModLoaderGUI
                 }
             }
         }
+
         private void enableModButton_Click(object sender, EventArgs e)
         {
             if (modsListBox.SelectedIndex == -1)
             {
                 statusLabel.Text = "Please select a mod to enable or disable.";
-                Debug.WriteLine("Error: No mod selected.");
                 return;
             }
 
@@ -125,7 +123,6 @@ namespace NN_ModLoaderGUI
                 if (!File.Exists(modPath))
                 {
                     statusLabel.Text = $"Mod file not found: {modPath}";
-                    Debug.WriteLine($"Error: Mod file not found: {modPath}");
                     return;
                 }
 
@@ -165,10 +162,6 @@ namespace NN_ModLoaderGUI
                                 }
                                 File.Move(associatedFilePath, disabledFileWithD);
                             }
-                            else
-                            {
-                                Debug.WriteLine($"Error: Associated file not found: {associatedFilePath}");
-                            }
                         }
                     }
                 }
@@ -182,12 +175,8 @@ namespace NN_ModLoaderGUI
             catch (Exception ex)
             {
                 statusLabel.Text = $"Error toggling mod: {ex.Message}";
-                Debug.WriteLine($"Error toggling mod: {ex.Message}");
-                Debug.WriteLine(ex.StackTrace);  // Log the stack trace for more detailed error info
             }
         }
-
-
 
         private void LoadMods()
         {
@@ -222,7 +211,6 @@ namespace NN_ModLoaderGUI
                 }
             }
         }
-
 
         public class ModInfo
         {
